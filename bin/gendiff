@@ -18,10 +18,17 @@ Options:
 DOC;
 
 require(__DIR__ . '/../vendor/docopt/docopt/src/docopt.php');
+require_once(__DIR__ . '/../src/contrast.php');
+
+use function App\Contrast\contrastJson;
+
 $args = Docopt::handle($doc, array('version'=>'Naval Fate 2.0'));
-print_r(json_decode(file_get_contents(__DIR__ . $args['<firstFile>'])));
+
+print_r(contrastJson($args['<firstFile>'], $args['<secondFile>']));
 print_r("\n");
-print_r(json_decode(file_get_contents(__DIR__ . $args['<secondFile>'])));
-print_r("\n");
+//print_r(json_decode(file_get_contents(__DIR__ . $args['<firstFile>'])));
+//print_r("\n");
+//print_r(json_decode(file_get_contents(__DIR__ . $args['<secondFile>'])));
+//print_r("\n");
 //foreach ($args as $k=>$v)
 //    echo $k.': '.json_encode($v).PHP_EOL;
